@@ -5,6 +5,7 @@ import {
   deliveryOptions,
   getDeliveryOption,
 } from "../../data/deliveryOptions.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
 export function renderOrderSummary() {
@@ -116,6 +117,7 @@ export function renderOrderSummary() {
       removeFromCart(productId);
       renderOrderSummary();
       updateCheckoutQuantity();
+      renderPaymentSummary();
     });
   });
 
@@ -139,3 +141,9 @@ function updateCheckoutQuantity() {
     ".js-checkout-quantity"
   ).innerHTML = `${cartQuantity} items`;
 }
+
+document.querySelectorAll(".js-delivery-option").forEach((input) => {
+  input.addEventListener("click", () => {
+    renderPaymentSummary();
+  });
+});
