@@ -127,6 +127,7 @@ export function renderOrderSummary() {
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
       updateCheckoutQuantity();
+      renderPaymentSummary();
     });
   });
 }
@@ -141,9 +142,3 @@ function updateCheckoutQuantity() {
     ".js-checkout-quantity"
   ).innerHTML = `${cartQuantity} items`;
 }
-
-document.querySelectorAll(".js-delivery-option").forEach((input) => {
-  input.addEventListener("click", () => {
-    renderPaymentSummary();
-  });
-});
